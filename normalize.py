@@ -4,11 +4,12 @@ import sys
 import textwrap
 import unicodedata
 
-# Clear accents, numbers and any punctuation
+# Clear uppercase, accents, numbers and any punctuation
 def normalize_text(text: str):
     decomposed = unicodedata.normalize('NFD', text)
     cleaned = re.sub(r'[^A-Za-z\s]', '', decomposed)
-    return " ".join(cleaned.split())
+    lowered = cleaned.lower()
+    return " ".join(lowered.split())
 
 # Wrap lines to a specified width without breaking words
 def normalize_width(text: str, width: int = 120):
